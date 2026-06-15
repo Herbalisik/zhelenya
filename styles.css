@@ -1351,3 +1351,33 @@ fieldset[hidden] { display: none !important; }
     font-size: 15px !important;
   }
 }
+
+/* === Правки v35: фраза в приглашении как текст программы + меньше отступ перед анкетой === */
+.invite-block .hint {
+  font-family: 'Montserrat', Arial, sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+}
+
+.between-photo-section.section {
+  padding-bottom: clamp(9px, 2vw, 25px) !important;
+}
+
+.form-block.section {
+  padding-top: clamp(17px, 2.5vw, 36px) !important;
+}
+
+@media (max-width: 780px) {
+  .invite-block .hint {
+    font-size: 18px !important;
+  }
+
+  .between-photo-section.section {
+    padding-bottom: 8px !important;
+  }
+
+  .form-block.section {
+    padding-top: 17px !important;
+  }
+}
