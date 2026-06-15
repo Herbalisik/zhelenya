@@ -1,0 +1,1353 @@
+:root {
+  --cream: #fbf7ef;
+  --paper: rgba(255, 252, 246, .86);
+  --ink: #352b24;
+  --muted: #7a6b5f;
+  --accent: #9d8066;
+  --accent-dark: #4d5a42;
+  --line: rgba(53, 43, 36, .14);
+  --shadow: 0 24px 70px rgba(49, 39, 31, .16);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; width: 100%; max-width: 100%; overflow-x: hidden; }
+body {
+  margin: 0;
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: var(--ink);
+  background: var(--cream);
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+
+.block-nav {
+  position: fixed;
+  inset: auto 0 28px 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.block-nav__button {
+  position: fixed;
+  bottom: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 1px solid rgba(77, 90, 66, .28);
+  border-radius: 999px;
+  background: rgba(255, 252, 246, .82);
+  color: var(--accent-dark);
+  box-shadow: 0 14px 38px rgba(49, 39, 31, .16);
+  backdrop-filter: blur(12px);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: opacity .2s ease, transform .2s ease, background .2s ease;
+}
+
+.block-nav__button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: rgba(255, 252, 246, .95);
+}
+
+.block-nav__button:disabled {
+  opacity: .34;
+  cursor: default;
+}
+
+.block-nav__button--prev { left: clamp(12px, 3vw, 34px); }
+.block-nav__button--next { right: clamp(12px, 3vw, 34px); }
+.block-nav__button span { font-size: 18px; line-height: 1; }
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(227, 207, 180, .38), transparent 30%),
+    radial-gradient(circle at 80% 90%, rgba(126, 139, 112, .24), transparent 34%),
+    var(--cream);
+}
+
+h1, h2, h3, .couple-logo, .date-big, .names-final {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+  line-height: .95;
+}
+
+h1 { font-size: clamp(48px, 10vw, 116px); margin: 0 0 28px; }
+h2 { font-size: clamp(36px, 7vw, 78px); margin: 0 0 20px; }
+h3 { font-size: clamp(30px, 5vw, 54px); margin: 8px 0; }
+p { line-height: 1.7; }
+
+.section {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100svh;
+  padding: clamp(56px, 8vw, 110px) clamp(18px, 5vw, 72px);
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero { text-align: center; align-items: start; padding-top: clamp(28px, 5vw, 64px); }
+.hero__inner { width: min(920px, 100%); transform: translateY(-2vh); }
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  font-size: 25px;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 18px;
+}
+
+.main-photo {
+  width: min(520px, 86vw);
+  aspect-ratio: 4 / 5;
+  margin: 0 auto 18px;
+  border-radius: 260px 260px 18px 18px;
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  border: 1px dashed rgba(53, 43, 36, .28);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.62), rgba(255,255,255,.20)),
+    repeating-linear-gradient(-45deg, rgba(157,128,102,.12) 0 10px, transparent 10px 20px);
+  color: rgba(53, 43, 36, .58);
+  text-align: center;
+  padding: 20px;
+}
+
+.image-slot {
+  overflow: hidden;
+  background: rgba(255,255,255,.4);
+}
+
+.image-slot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.couple-logo {
+  font-size: clamp(28px, 6vw, 56px);
+  letter-spacing: .08em;
+  margin: 0;
+}
+.couple-logo span { margin: 0 .18em; color: var(--accent); }
+
+.photo-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .24;
+  background-image: linear-gradient(rgba(251,247,239,.22), rgba(251,247,239,.22)), var(--section-photo, linear-gradient(135deg, #efe2cf, #c7b39d));
+  background-size: cover;
+  background-position: center;
+}
+.invite-block::after { --section-photo: url("assets/images/02-invite-bg.jpg"); }
+.photo-bg--soft::after { opacity: .36; }
+.photo-bg--forest::after {
+  opacity: .34;
+  --section-photo: url("assets/images/05-dress-forest-bg.jpg");
+}
+.finale-block::after { --section-photo: url("assets/images/06-finale-bg.jpg"); }
+.content-card, .finale-card {
+  width: min(860px, 100%);
+  padding: clamp(28px, 6vw, 70px);
+  border: 1px solid var(--line);
+  border-radius: 34px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+.content-card--wide { width: min(1040px, 100%); }
+.guest-line { font-size: clamp(24px, 4vw, 42px); margin: 0 0 10px; }
+.date-big { font-size: clamp(52px, 12vw, 126px); color: var(--accent-dark); margin: 22px 0 10px; }
+.hint { color: var(--muted); font-size: 14px; }
+
+.section-title {
+  width: min(980px, 100%);
+  text-align: center;
+  margin-bottom: 34px;
+}
+.location-block, .program-block, .details-block, .form-block, .chat-block { align-content: center; }
+.location-grid, .details-grid {
+  width: min(1120px, 100%);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 5vw, 64px);
+  align-items: center;
+}
+
+.polaroid {
+  background: #fffaf1;
+  padding: 18px 18px 42px;
+  box-shadow: 0 20px 50px rgba(36, 27, 20, .22);
+  transform: rotate(-4deg);
+  width: min(440px, 100%);
+  margin-inline: auto;
+}
+.polaroid__photo { aspect-ratio: 1 / 1; }
+.polaroid p { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; text-align: center; margin: 18px 0 0; }
+.map-card { display: grid; gap: 22px; justify-items: start; }
+.map-photo { width: 100%; aspect-ratio: 4 / 3; border-radius: 28px; box-shadow: var(--shadow); }
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 52px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-dark);
+  background: var(--accent-dark);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.button:hover { transform: translateY(-2px); }
+.button--ghost { background: transparent; color: var(--accent-dark); }
+.button-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.timeline {
+  width: min(960px, 100%);
+  display: grid;
+  gap: 24px;
+  overflow: hidden;
+  padding: 12px 0;
+}
+.program-card {
+  width: min(620px, 92%);
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  padding: clamp(22px, 4vw, 38px);
+  background: rgba(255, 252, 246, .92);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: transform .95s cubic-bezier(.16, 1, .3, 1), opacity .65s ease;
+}
+.program-card span { color: var(--accent); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 12px; }
+.program-card p { margin: 0; font-size: 18px; }
+.slide-left { justify-self: start; transform: translate3d(-110vw, 0, 0); }
+.slide-right { justify-self: end; transform: translate3d(110vw, 0, 0); }
+.program-card.is-visible { opacity: 1; transform: translate3d(0, 0, 0); }
+.wild-card { background: rgba(236, 229, 213, .92); }
+
+.palette {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: clamp(8px, 1.8vw, 18px);
+  margin: 28px auto;
+  width: min(720px, 100%);
+}
+.palette span {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: inset 0 0 0 1px rgba(53,43,36,.12), 0 8px 18px rgba(53,43,36,.13);
+}
+
+.detail-card {
+  min-height: 310px;
+  padding: clamp(24px, 4vw, 44px);
+  border-radius: 30px;
+  border: 1px solid var(--line);
+  background: rgba(255, 252, 246, .9);
+  box-shadow: var(--shadow);
+}
+.detail-card h3 { font-size: clamp(34px, 5vw, 58px); }
+
+.rsvp-form { display: grid; gap: 22px; text-align: left; margin-top: 24px; }
+.rsvp-form label, fieldset { font-weight: 500; }
+.rsvp-form input[type="text"] {
+  width: 100%;
+  margin-top: 8px;
+  min-height: 54px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 0 16px;
+  font: inherit;
+  background: rgba(255,255,255,.65);
+}
+fieldset {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+}
+legend { padding: 0 8px; color: var(--accent-dark); }
+fieldset[hidden] { display: none !important; }
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.form-status { color: var(--accent-dark); font-weight: 600; margin: 0; }
+.hidden-frame {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+  left: -9999px;
+  bottom: 0;
+}
+
+.finale-card { color: var(--ink); }
+.names-final {
+  display: grid;
+  gap: 8px;
+  font-size: clamp(44px, 9vw, 96px);
+}
+.hearts { color: #a46e64; font-size: clamp(26px, 5vw, 54px); letter-spacing: .15em; }
+
+.reveal { opacity: 0; transition: opacity .75s ease, transform .75s cubic-bezier(.2,.7,.1,1); }
+.fade-up { transform: translateY(44px); }
+.from-left { transform: translateX(-70px); }
+.from-right { transform: translateX(70px); }
+.reveal.is-visible { opacity: 1; transform: translate(0,0); }
+.polaroid.reveal.is-visible { transform: rotate(-4deg) translate(0,0); }
+
+@media (max-width: 780px) {
+  html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+  .section { width: 100vw; max-width: 100vw; min-height: auto; padding: 70px 18px; }
+  .block-nav__button { bottom: 14px; padding: 11px 14px; min-height: 44px; }
+  .block-nav__button b { display: none; }
+  .hero { min-height: 100svh; padding-top: 34px; }
+  .location-grid, .details-grid { grid-template-columns: 1fr; }
+  .map-card { justify-items: stretch; }
+  .button { width: 100%; }
+  .palette { grid-template-columns: repeat(3, 1fr); width: min(330px, 100%); }
+  .checkbox-grid { grid-template-columns: 1fr; }
+  .slide-left, .slide-right { justify-self: center; width: 100%; }
+  .content-card, .finale-card { border-radius: 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .polaroid { transform: rotate(-4deg) !important; }
+}
+
+/* === Финальные правки v9 === */
+:root {
+  --burgundy: #7b2730;
+  --paper-strong: rgba(255, 252, 246, .78);
+}
+
+/* Убираем белёсую пленку с фоновых фотографий: теперь фото показываются без молочного слоя. */
+.photo-bg::after,
+.photo-bg--soft::after,
+.photo-bg--forest::after,
+.finale-block::after {
+  opacity: 1;
+  background-image: var(--section-photo, linear-gradient(135deg, #efe2cf, #c7b39d));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Первый блок делаем компактнее, чтобы между ним и приглашением не было огромной паузы. */
+.hero.section {
+  min-height: auto;
+  padding-top: clamp(28px, 5vw, 60px);
+  padding-bottom: clamp(30px, 5vw, 64px);
+}
+.hero__inner { transform: none; }
+.couple-logo {
+  font-size: clamp(38px, 7vw, 76px);
+  color: var(--burgundy);
+  letter-spacing: .065em;
+  margin-top: 10px;
+}
+.couple-logo span { color: var(--burgundy); }
+
+/* Второй блок подстроен под вертикальное фото ковра: весь ковер виден, без обрезки. */
+.invite-block.section {
+  min-height: min(100svh, calc(100vw * 1669 / 1090));
+  padding-top: clamp(34px, 5vw, 72px);
+  padding-bottom: clamp(34px, 5vw, 72px);
+  background: #f7efe6;
+}
+.invite-block::after {
+  background-size: contain;
+  background-color: #f7efe6;
+}
+.invite-block .content-card {
+  width: min(760px, 92vw);
+  padding: clamp(22px, 4.8vw, 52px);
+  background: rgba(255, 252, 246, .74);
+}
+.invite-block h2 { font-size: clamp(30px, 5.4vw, 64px); }
+.guest-line { font-size: clamp(25px, 4.4vw, 46px); color: var(--burgundy); }
+.date-big { color: var(--burgundy); }
+
+/* Карточки поверх леса и финального фото оставляем читабельными, но не выбеливаем весь фон. */
+.content-card, .finale-card { background: var(--paper-strong); }
+.dress-block .content-card { background: rgba(255, 252, 246, .72); }
+
+/* Фото между деталями и анкетой. */
+.between-photo-section.section {
+  min-height: auto;
+  padding-top: clamp(18px, 4vw, 50px);
+  padding-bottom: clamp(18px, 4vw, 50px);
+  background: var(--cream);
+}
+.between-photo {
+  width: min(1180px, 100%);
+  border-radius: clamp(24px, 4vw, 44px);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+  background: #f7efe6;
+}
+.between-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Чуть более аккуратные вертикальные расстояния у соседних блоков. */
+.details-block.section { padding-bottom: clamp(34px, 5vw, 72px); }
+.form-block.section { padding-top: clamp(34px, 5vw, 72px); }
+
+@media (min-width: 1024px) {
+  .hero.section { padding-top: 42px; padding-bottom: 56px; }
+  .main-photo { width: min(500px, 34vw); }
+  .invite-block.section { width: min(780px, 100%); margin-inline: auto; }
+  .dress-block.section,
+  .finale-block.section { min-height: 100svh; }
+}
+
+@media (max-width: 780px) {
+  .hero.section {
+    min-height: auto;
+    padding: 30px 18px 24px;
+  }
+  h1 { font-size: clamp(42px, 13vw, 64px); margin-bottom: 20px; }
+  .main-photo { width: min(310px, 82vw); margin-bottom: 12px; }
+  .couple-logo { font-size: clamp(34px, 10vw, 48px); }
+
+  .invite-block.section {
+    min-height: min(780px, calc(100vw * 1669 / 1090));
+    padding: 30px 18px;
+  }
+  .invite-block .content-card {
+    width: min(340px, 90vw);
+    padding: 22px 18px;
+    border-radius: 24px;
+  }
+  .invite-block h2 { font-size: clamp(28px, 9vw, 40px); }
+  .date-big { font-size: clamp(48px, 16vw, 72px); margin: 14px 0 8px; }
+  .hint { font-size: 13px; }
+
+  .between-photo-section.section { padding: 16px 14px; }
+  .between-photo { border-radius: 24px; }
+
+  .content-card, .finale-card { background: rgba(255, 252, 246, .80); }
+  .block-nav__button { background: rgba(255, 252, 246, .9); }
+}
+
+/* === Правки v10: программа без подложки, фото-раздел встык, ровный десктоп === */
+
+/* 1. У выезжающих пунктов программы убрана тяжелая общая подложка/тень. */
+.program-block.section {
+  background: transparent;
+}
+.timeline {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  padding: 0;
+}
+.program-card {
+  box-shadow: none;
+  background: rgba(255, 252, 246, .96);
+}
+.wild-card {
+  background: rgba(236, 229, 213, .96);
+}
+
+/* 2. Фото между деталями и анкетой теперь не плашка, а полноширинная зона без отступов. */
+.between-photo-section.section {
+  width: 100%;
+  max-width: none;
+  min-height: 52vh;
+  padding: 0 !important;
+  display: block;
+  background: transparent;
+  overflow: hidden;
+}
+.between-photo {
+  width: 100%;
+  max-width: none;
+  height: 52vh;
+  min-height: 360px;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: 0;
+  background: transparent;
+}
+.between-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.details-block.section {
+  padding-bottom: 0;
+}
+.form-block.section {
+  padding-top: clamp(48px, 6vw, 90px);
+}
+
+/* 3. На компьютере блок с ковром снова занимает всю ширину секции, а карточка стоит ровно по центру. */
+.invite-block.section {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-inline: 0 !important;
+  display: grid;
+  place-items: center;
+}
+.invite-block .content-card {
+  margin-inline: auto;
+  transform: none;
+}
+
+@media (min-width: 1024px) {
+  .invite-block.section {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: 0 !important;
+    min-height: 100svh;
+    padding-left: clamp(24px, 5vw, 72px);
+    padding-right: clamp(24px, 5vw, 72px);
+  }
+  .invite-block::after {
+    background-size: contain;
+    background-position: center;
+  }
+  .invite-block .content-card {
+    width: min(760px, 72vw);
+  }
+}
+
+@media (max-width: 780px) {
+  .program-block.section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .program-block .section-title,
+  .timeline {
+    width: calc(100% - 36px);
+    margin-inline: auto;
+  }
+  .program-card {
+    width: 100%;
+    border-radius: 28px;
+  }
+  .between-photo-section.section {
+    width: 100vw;
+    max-width: 100vw;
+    min-height: 42vh;
+  }
+  .between-photo {
+    height: 42vh;
+    min-height: 280px;
+  }
+  .form-block.section {
+    padding-top: 44px;
+  }
+}
+
+/* === Правки v11: симметричные отступы и фото без боковой обрезки === */
+:root {
+  --section-gap-y: clamp(58px, 7vw, 96px);
+}
+
+/* Единый аккуратный вертикальный ритм между основными блоками. */
+.section {
+  padding-top: var(--section-gap-y);
+  padding-bottom: var(--section-gap-y);
+}
+
+/* Первый экран: подпись под фото дышит сверху и снизу. */
+.hero.section {
+  padding-top: clamp(42px, 6vw, 76px);
+  padding-bottom: clamp(58px, 8vw, 104px);
+}
+.couple-logo {
+  margin-top: clamp(24px, 4vw, 44px);
+  margin-bottom: clamp(26px, 4vw, 52px);
+}
+.main-photo {
+  margin-bottom: 0;
+}
+
+/* Между первым и вторым блоком теперь больше воздуха, но имена гостей помещаются. */
+.invite-block.section {
+  padding-top: clamp(58px, 8vw, 108px);
+  padding-bottom: clamp(58px, 8vw, 108px);
+}
+.invite-block .content-card {
+  margin: 0 auto;
+}
+
+/* Остальные блоки получают одинаковый вертикальный ритм. */
+.location-block.section,
+.program-block.section,
+.dress-block.section,
+.details-block.section,
+.form-block.section,
+.finale-block.section {
+  padding-top: var(--section-gap-y);
+  padding-bottom: var(--section-gap-y);
+}
+
+/* Фото между деталями и анкетой: показываем всю ширину картинки без обрезки по бокам. */
+.between-photo-section.section {
+  min-height: auto;
+  padding: 0 !important;
+  line-height: 0;
+  background: transparent;
+}
+.between-photo {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  border-radius: 0;
+  box-shadow: none;
+  border: 0;
+  overflow: hidden;
+  background: transparent;
+}
+.between-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (min-width: 1024px) {
+  :root { --section-gap-y: clamp(70px, 7vw, 112px); }
+  .hero.section {
+    padding-top: 64px;
+    padding-bottom: 96px;
+  }
+  .invite-block.section {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+  .invite-block .content-card {
+    position: relative;
+    left: 0;
+    right: 0;
+    transform: none;
+  }
+}
+
+@media (max-width: 780px) {
+  :root { --section-gap-y: 58px; }
+  .section {
+    padding-top: var(--section-gap-y);
+    padding-bottom: var(--section-gap-y);
+  }
+  .hero.section {
+    padding: 42px 18px 64px;
+  }
+  .couple-logo {
+    margin-top: 26px;
+    margin-bottom: 34px;
+  }
+  .invite-block.section {
+    padding: 64px 18px;
+  }
+  .between-photo-section.section {
+    width: 100vw;
+    max-width: 100vw;
+    min-height: auto;
+    padding: 0 !important;
+  }
+  .between-photo {
+    height: auto;
+    min-height: 0;
+  }
+  .between-photo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+/* === Правки v12: новая овца и финальный блок целиком картинкой === */
+
+/* Финальный экран теперь является самой картинкой без карточек, затемнений и наложенного текста. */
+.finale-block.finale-image-section {
+  min-height: auto;
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: var(--cream);
+  overflow: hidden;
+  line-height: 0;
+}
+
+.finale-block.finale-image-section::after {
+  display: none !important;
+  content: none !important;
+}
+
+.finale-image {
+  display: block;
+  width: min(100%, 980px);
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center top;
+}
+
+/* Чуть аккуратнее полароид с новой квадратной картинкой: фото заполняет рамку без искажений. */
+.polaroid__photo img {
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (min-width: 1024px) {
+  .finale-block.finale-image-section {
+    padding: 0 !important;
+  }
+  .finale-image {
+    width: min(74vw, 980px);
+  }
+}
+
+@media (max-width: 780px) {
+  .finale-block.finale-image-section {
+    width: 100vw;
+    max-width: 100vw;
+    padding: 0 !important;
+  }
+  .finale-image {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+
+/* === Правки v13: анкета, плавное появление ковра и карандашная подпись === */
+
+/* Ковер во втором блоке больше не виден сразу при открытии сайта: он проявляется, когда до блока долистывают. */
+.image-reveal-section::after {
+  opacity: 0 !important;
+  transform: scale(1.015);
+  transition: opacity .9s ease, transform 1.15s cubic-bezier(.2,.7,.1,1);
+}
+.image-reveal-section.is-bg-visible::after {
+  opacity: 1 !important;
+  transform: scale(1);
+}
+
+/* Первый блок: больше воздуха между заголовком, фото и подписью. */
+.hero.section {
+  min-height: 100dvh;
+  padding-top: clamp(54px, 7vw, 92px);
+  padding-bottom: clamp(78px, 9vw, 126px);
+}
+.hero h1 {
+  margin-bottom: clamp(34px, 5.2vw, 66px);
+}
+.main-photo {
+  margin-bottom: clamp(30px, 4.6vw, 58px);
+}
+
+/* Подпись — более жирная, карандашная, в цвет ковра; сердце нарисовано линией, а не emoji. */
+.couple-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .18em;
+  max-width: 100%;
+  margin-top: 0;
+  margin-bottom: clamp(34px, 5vw, 62px);
+  color: var(--burgundy);
+  font-family: 'Caveat', 'Comic Sans MS', cursive;
+  font-weight: 700;
+  font-size: clamp(48px, 7.4vw, 92px);
+  line-height: .9;
+  letter-spacing: .01em;
+  text-shadow: .018em .018em 0 rgba(123, 39, 48, .16);
+}
+.couple-logo__text {
+  color: currentColor !important;
+  margin: 0 !important;
+}
+.heart-sketch {
+  width: .74em;
+  height: .74em;
+  flex: 0 0 auto;
+  color: currentColor;
+  overflow: visible;
+  transform: translateY(.02em) rotate(-4deg);
+}
+.heart-sketch path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 5.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.heart-sketch path + path {
+  stroke-width: 2.6;
+  opacity: .58;
+}
+
+/* Небольшая полировка формы после добавления шампанского. */
+.rsvp-form > label {
+  line-height: 1.35;
+}
+.checkbox-grid {
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .hero.section {
+    min-height: 100dvh;
+    padding-top: 76px;
+    padding-bottom: 118px;
+  }
+  .hero h1 {
+    margin-bottom: 56px;
+  }
+  .main-photo {
+    margin-bottom: 48px;
+  }
+  .couple-logo {
+    font-size: clamp(62px, 6vw, 94px);
+  }
+}
+
+@media (max-width: 780px) {
+  .hero.section {
+    min-height: 100dvh;
+    padding: 54px 18px 84px;
+  }
+  .hero h1 {
+    margin-bottom: 34px;
+  }
+  .main-photo {
+    margin-bottom: 34px;
+  }
+  .couple-logo {
+    width: 100%;
+    gap: .13em;
+    flex-wrap: nowrap;
+    font-size: clamp(48px, 15vw, 64px);
+    margin-bottom: 44px;
+  }
+  .heart-sketch {
+    width: .68em;
+    height: .68em;
+  }
+  .invite-block.section {
+    padding-top: 72px;
+  }
+}
+
+@media (max-width: 380px) {
+  .couple-logo {
+    font-size: clamp(42px, 13.2vw, 54px);
+  }
+}
+
+/* === Правки v14: единый внешний фон второго блока с первым экраном === */
+/* У второго блока убран отдельный молочный фон: теперь вокруг ковра виден тот же общий фон страницы, что и на первом экране. */
+.invite-block.section {
+  background: transparent !important;
+}
+.invite-block::after {
+  background-color: transparent !important;
+}
+
+/* На широких экранах ковер остается строго по центру, а боковые поля получают общий фон сайта. */
+@media (min-width: 1024px) {
+  .invite-block.section {
+    background: transparent !important;
+  }
+  .invite-block::after {
+    background-position: center top;
+  }
+}
+
+/* На телефонах сохраняем такой же фон и не даем блоку создавать светлую полосу по краям. */
+@media (max-width: 780px) {
+  .invite-block.section {
+    width: 100vw;
+    max-width: 100vw;
+    background: transparent !important;
+  }
+  .invite-block::after {
+    background-color: transparent !important;
+    background-position: center top;
+  }
+}
+
+
+/* === Правки v15: фон второго блока как у первого + сердце рядом со знаком = === */
+:root {
+  --warm-section-bg: linear-gradient(135deg, #efe2cf 0%, #c7b39d 100%);
+}
+
+/* Внешний фон блока с ковром теперь такой же теплый, как у первого экрана,
+   поэтому снизу/по бокам больше нет белой полосы. */
+.invite-block.section {
+  background: var(--warm-section-bg) !important;
+}
+.invite-block::after {
+  background-color: transparent !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center top !important;
+}
+
+/* Подпись в первом блоке всегда идет одной строкой, а нарисованное сердце
+   остается сразу после знака = на телефонах и на компьютере. */
+.couple-logo {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: .12em !important;
+  width: 100%;
+  white-space: nowrap !important;
+  letter-spacing: 0 !important;
+}
+.couple-logo__text {
+  display: inline-block !important;
+  flex: 0 1 auto !important;
+  white-space: nowrap !important;
+  min-width: 0;
+}
+.heart-sketch {
+  flex: 0 0 auto !important;
+  margin-left: .02em !important;
+  transform: translateY(.035em) rotate(-4deg) !important;
+}
+
+@media (min-width: 1024px) {
+  .invite-block.section {
+    background: var(--warm-section-bg) !important;
+  }
+  .couple-logo {
+    font-size: clamp(58px, 5.7vw, 90px) !important;
+  }
+}
+
+@media (max-width: 780px) {
+  .invite-block.section {
+    background: var(--warm-section-bg) !important;
+  }
+  .couple-logo {
+    font-size: clamp(38px, 12.3vw, 56px) !important;
+    gap: .08em !important;
+    padding-inline: 2px;
+  }
+  .heart-sketch {
+    width: .62em !important;
+    height: .62em !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .couple-logo {
+    font-size: clamp(34px, 11.6vw, 44px) !important;
+  }
+}
+
+/* === Правки v16: финал без мерцания, ковер всегда виден, стабильные анимации === */
+
+/* Ковер снова виден сразу и больше не скрывается/не проявляется отдельной анимацией. */
+.invite-block::after {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Финальная картинка — обычное изображение без reveal-класса и без исчезновения в конце страницы. */
+.finale-image {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  visibility: visible !important;
+}
+
+/* На мобильных и ПК последний блок не создает лишних белых плашек и не прыгает по высоте. */
+.finale-block.finale-image-section {
+  background: var(--cream) !important;
+  min-height: auto !important;
+  overflow: hidden !important;
+}
+
+/* Стабильный fallback для локального запуска через file:// на Windows/Chrome:
+   обычные reveal-элементы появляются один раз и не пропадают обратно. */
+.reveal.is-visible {
+  opacity: 1 !important;
+}
+
+/* Если на Windows включено системное "уменьшение анимации", браузер может отключать transition.
+   Для этого сайта принудительно оставляем мягкое появление и выезд программных карточек. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 0 !important;
+    transition: opacity .75s ease, transform .75s cubic-bezier(.2,.7,.1,1) !important;
+  }
+  .reveal.is-visible {
+    opacity: 1 !important;
+    transform: translate(0,0) !important;
+  }
+  .program-card {
+    transition: transform .95s cubic-bezier(.16, 1, .3, 1), opacity .65s ease !important;
+  }
+  .slide-left { transform: translate3d(-110vw, 0, 0) !important; }
+  .slide-right { transform: translate3d(110vw, 0, 0) !important; }
+  .program-card.is-visible { transform: translate3d(0, 0, 0) !important; opacity: 1 !important; }
+}
+
+/* === Правки v17: первый экран, новая карта и финальное фото как готовые изображения === */
+/* Первый блок теперь полностью заменен готовой картинкой, чтобы на телефонах и ПК выглядел одинаково. */
+.hero.hero-image-section {
+  min-height: auto !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  background: var(--warm-section-bg, linear-gradient(135deg, #efe2cf 0%, #c7b39d 100%)) !important;
+  overflow: hidden !important;
+  line-height: 0;
+}
+.hero.hero-image-section::after {
+  display: none !important;
+  content: none !important;
+}
+.hero-full-image {
+  display: block;
+  width: min(100%, 781px);
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center top;
+}
+
+/* Карта должна показываться полностью, без боковой обрезки. */
+.map-photo {
+  aspect-ratio: auto !important;
+  height: auto !important;
+  background: #f8f0e4;
+}
+.map-photo img {
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+/* Финальный блок также является готовой картинкой, не обрезаем ее на разных экранах. */
+.finale-block.finale-image-section {
+  background: var(--cream) !important;
+  padding: 0 !important;
+  min-height: auto !important;
+  line-height: 0;
+}
+.finale-image {
+  width: min(100%, 1079px) !important;
+  height: auto !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+}
+
+@media (min-width: 1024px) {
+  .hero-full-image {
+    width: min(56vw, 781px);
+  }
+  .finale-image {
+    width: min(62vw, 1079px) !important;
+  }
+}
+
+@media (max-width: 780px) {
+  .hero.hero-image-section,
+  .finale-block.finale-image-section {
+    width: 100vw;
+    max-width: 100vw;
+  }
+  .hero-full-image,
+  .finale-image {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .location-grid {
+    gap: 34px;
+  }
+  .map-card {
+    justify-items: center;
+  }
+}
+
+/* === Правки v18: убрана тонкая темная полоса у первого готового изображения === */
+.hero.hero-image-section,
+.hero-full-image {
+  border: 0 !important;
+  outline: 0 !important;
+}
+
+/* === Правки v19: новые готовые изображения и стабильные анимации плашек === */
+.hero.hero-image-section,
+.finale-block.finale-image-section {
+  background: #d2bfa8 !important;
+}
+
+.hero-full-image,
+.finale-image {
+  display: block !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  backface-visibility: hidden;
+}
+
+/* Плашки снова плавно появляются при прокрутке; ковер при этом остается статичным. */
+.reveal {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition-property: opacity, transform !important;
+  transition-duration: .9s, .9s !important;
+  transition-timing-function: ease, cubic-bezier(.16, 1, .3, 1) !important;
+}
+.reveal.fade-up:not(.is-visible) { transform: translate3d(0, 48px, 0); }
+.reveal.from-left:not(.is-visible) { transform: translate3d(-76px, 0, 0); }
+.reveal.from-right:not(.is-visible) { transform: translate3d(76px, 0, 0); }
+.reveal.is-visible {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+.polaroid.reveal.is-visible {
+  transform: rotate(-4deg) translate3d(0, 0, 0) !important;
+}
+
+.invite-block::after {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* На ПК готовые вертикальные изображения держим аккуратно по центру, на телефоне — на всю ширину. */
+@media (min-width: 1024px) {
+  .hero-full-image { width: min(56vw, 779px) !important; }
+  .finale-image { width: min(62vw, 1040px) !important; }
+}
+@media (max-width: 780px) {
+  .hero-full-image,
+  .finale-image {
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+}
+
+
+/* === Правки v20: бесшовный переход анкеты к финальному блоку + именные обращения сохранены === */
+:root {
+  --finale-top-bg: #f3ece2;
+}
+
+/* Убираем визуальный шов между анкетой и финальной картинкой: фон зоны анкеты
+   плавно совпадает с верхней частью финального изображения. */
+.form-block.section {
+  padding-bottom: 0 !important;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--finale-top-bg) 72%, var(--finale-top-bg) 100%) !important;
+}
+.form-block .content-card {
+  margin-bottom: clamp(34px, 5vw, 70px);
+}
+.finale-block.finale-image-section {
+  margin-top: -1px !important;
+  background: var(--finale-top-bg) !important;
+}
+.finale-image {
+  display: block !important;
+  background: var(--finale-top-bg) !important;
+}
+
+/* Ковер во втором блоке остается статичным и видимым всегда. */
+.invite-block::after {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+@media (min-width: 1024px) {
+  .form-block.section {
+    padding-bottom: 0 !important;
+  }
+  .form-block .content-card {
+    margin-bottom: clamp(46px, 4.8vw, 86px);
+  }
+}
+
+@media (max-width: 780px) {
+  .form-block.section {
+    padding-bottom: 0 !important;
+  }
+  .form-block .content-card {
+    margin-bottom: 34px;
+  }
+  .finale-block.finale-image-section {
+    margin-top: -1px !important;
+  }
+}
+
+
+/* === Правки v21: ковер на всю ширину без боковых полей + пункт с купюрой === */
+.invite-block.section {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  min-height: 100svh !important;
+  padding-left: clamp(18px, 5vw, 72px) !important;
+  padding-right: clamp(18px, 5vw, 72px) !important;
+  background: #5a0208 !important;
+}
+
+.invite-block::after {
+  display: block !important;
+  content: '' !important;
+  inset: 0 !important;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  background-image: url("assets/images/02-invite-bg.jpg") !important;
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+
+.invite-block .content-card {
+  z-index: 1;
+}
+
+.detail-card--money {
+  grid-column: 1 / -1;
+  width: min(760px, 100%);
+  min-height: auto;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1.4vw, 14px);
+  text-align: center;
+}
+
+.detail-card--money p {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: 1.7;
+}
+
+.detail-card__money-image {
+  display: block;
+  width: min(300px, 76%);
+  height: auto;
+  transform: rotate(-4deg);
+  filter: drop-shadow(0 16px 22px rgba(49, 39, 31, .20));
+}
+
+@media (max-width: 780px) {
+  .invite-block.section {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-height: 100svh !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .detail-card--money {
+    grid-column: auto;
+    width: 100%;
+  }
+
+  .detail-card__money-image {
+    width: min(260px, 82%);
+  }
+}
+
+
+/* === Правки v22: купюра ближе к тексту + двусторонние reveal-анимации === */
+.detail-card--money {
+  gap: clamp(8px, 1.4vw, 14px) !important;
+}
+
+.detail-card__money-image {
+  margin-top: 0 !important;
+}
+
+:root {
+  --finale-top-bg: #f3ece2;
+}
+
+/* === Правки v23: рука с купюрой выходит от нижнего края карточки === */
+.detail-card--money {
+  padding-bottom: 0 !important;
+  overflow: hidden;
+}
+
+.detail-card__money-image {
+  margin-bottom: -8px !important;
+  transform-origin: center bottom;
+}
+
+
+/* === Правки v27: стабильная версия v23, убраны кнопки, фраза во втором блоке +2px === */
+.block-nav {
+  display: none !important;
+}
+
+/* Кнопки навигации убраны, но кнопку «Смотреть примеры» в дресс-коде оставляем видимой. */
+.dress-block .button {
+  display: inline-flex !important;
+}
+
+.invite-block .hint {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+@media (max-width: 780px) {
+  .invite-block .hint {
+    font-size: 15px !important;
+  }
+}
