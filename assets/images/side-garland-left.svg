@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 1000" preserveAspectRatio="none">
+  <defs>
+    <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.98  0 1 0 0 0.72  0 0 1 0 0.28  0 0 0 .9 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="wireShadow" x="-30%" y="-5%" width="160%" height="110%">
+      <feDropShadow dx="0" dy="1" stdDeviation="0.8" flood-color="#ffffff" flood-opacity="0.35"/>
+    </filter>
+    <style>
+      .wire{fill:none;stroke:#17120f;stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round;opacity:.58;filter:url(#wireShadow)}
+      .lead{stroke:#17120f;stroke-width:1.45;stroke-linecap:round;opacity:.62}
+      .cap{fill:#17120f;opacity:.72}
+      .halo{fill:#ffcf75;opacity:.26;filter:url(#softGlow)}
+      .bulb{fill:#fff6bf;stroke:#ffe39b;stroke-width:1.1;opacity:.95;filter:url(#softGlow)}
+      .core{fill:#fffdf0;opacity:.92}
+      .dim .halo{opacity:.18}.dim .bulb{opacity:.82}
+      .bright .halo{opacity:.34}.bright .bulb{opacity:1}
+    </style>
+  </defs>
+
+  <path class="wire" d="M66 -20 C38 58 91 116 55 190 C28 248 101 304 61 376 C31 431 86 494 51 558 C18 625 101 686 65 758 C39 813 85 898 48 1020"/>
+
+  <g class="bright" transform="translate(56 64)">
+    <line class="lead" x1="7" y1="-20" x2="0" y2="-8"/><rect class="cap" x="-4" y="-8" width="8" height="7" rx="2"/>
+    <circle class="halo" r="18"/><ellipse class="bulb" rx="5.8" ry="7.4"/><circle class="core" cx="-1.6" cy="-2" r="2.1"/>
+  </g>
+  <g class="dim" transform="translate(83 138) rotate(11)">
+    <line class="lead" x1="-4" y1="-18" x2="0" y2="-8"/><rect class="cap" x="-4" y="-8" width="8" height="7" rx="2"/>
+    <circle class="halo" r="16"/><ellipse class="bulb" rx="5" ry="6.8"/><circle class="core" cx="-1.4" cy="-1.8" r="1.8"/>
+  </g>
+  <g transform="translate(42 228) rotate(-12)">
+    <line class="lead" x1="10" y1="-21" x2="0" y2="-8"/><rect class="cap" x="-4" y="-8" width="8" height="7" rx="2"/>
+    <circle class="halo" r="17"/><ellipse class="bulb" rx="5.4" ry="7.1"/><circle class="core" cx="-1.5" cy="-1.9" r="2"/>
+  </g>
+  <g class="bright" transform="translate(76 320) rotate(8)">
+    <line class="lead" x1="-7" y1="-20" x2="0" y2="-8"/><rect class="cap" x="-4" y="-8" width="8" height="7" rx="2"/>
+    <circle class="halo" r="20"/><ellipse class="bulb" rx="5.8" ry="7.6"/><circle class="core" cx="-1.6" cy="-2" r="2.1"/>
+  </g>
+  <g class="dim" transform="translate(48 414) rotate(-7)">
+    <line class="lead" x1="5" y1="-20" x2="0" y2="-8"/><rect class="cap" x="-4" y="-8" width="8" height="7" rx="2"/>
+    <circle class="halo" r="16"/><ellipse class="bulb" rx="5" ry="6.8"/><circle class="core" cx="-1.4" cy="-1.7" r="1.8"/>
+  </g>
+  <g transform="translate(70 520) rotate(13)">
+    <line class="lead" x1="-8" y1="-22" x2="0" y2="-8"/><rect class="cap" x="-4" y="-8" width="8" height="7" rx="2"/>
+    <circle class="halo" r="18"/><ellipse class="bulb" rx="5.3" ry="7.2"/><circle class="core" cx="-1.5" cy="-1.9" r="2"/>
+  </g>
+  <g class="bright" transform="translate(38 636) rotate(-14)">
+    <line class="lead" x1="12" y1="-22" x2="0" y2="-8"/><rect class="cap" x="-4" y="-8" width="8" height="7" rx="2"/>
+    <circle class="halo" r="21"/><ellipse class="bulb" rx="6" ry="7.8"/><circle class="core" cx="-1.7" cy="-2.1" r="2.2"/>
+  </g>
+  <g class="dim" transform="translate(84 724) rotate(9)">
+    <line class="lead" x1="-12" y1="-22" x2="0" y2="-8"/><rect class="cap" x="-4" y="-8" width="8" height="7" rx="2"/>
+    <circle class="halo" r="16"/><ellipse class="bulb" rx="5.1" ry="6.9"/><circle class="core" cx="-1.4" cy="-1.7" r="1.8"/>
+  </g>
+  <g transform="translate(52 830) rotate(-9)">
+    <line class="lead" x1="6" y1="-21" x2="0" y2="-8"/><rect class="cap" x="-4" y="-8" width="8" height="7" rx="2"/>
+    <circle class="halo" r="18"/><ellipse class="bulb" rx="5.5" ry="7.2"/><circle class="core" cx="-1.5" cy="-1.9" r="2"/>
+  </g>
+  <g class="bright" transform="translate(78 934) rotate(15)">
+    <line class="lead" x1="-12" y1="-22" x2="0" y2="-8"/><rect class="cap" x="-4" y="-8" width="8" height="7" rx="2"/>
+    <circle class="halo" r="20"/><ellipse class="bulb" rx="5.9" ry="7.6"/><circle class="core" cx="-1.6" cy="-2" r="2.1"/>
+  </g>
+</svg>
